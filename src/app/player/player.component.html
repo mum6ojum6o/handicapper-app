@@ -1,0 +1,25 @@
+<h3>
+Player Profile
+</h3>
+<table class="table">
+  <thead class="thead-dark">
+      <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phonenumber</th>
+          <th scope="col"></th>
+        </tr>
+  </thead>
+      <tr>
+        <td scope="col">{{this.player?.firstName}}</td>
+        <td scope="col">{{this.player?.lastName}}</td>
+        <td scope="col">{{this.player?.email}}</td>
+        <td scope="col">{{this.player?.phoneNumber}}</td>
+        <td scope="col">
+          <button class="btn btn-primary" diabled="true">Update</button>
+          <button class="btn btn-danger">Reset</button>
+        </td>
+      </tr>
+</table>
+<rounds [rounds]="this.rounds"></rounds>

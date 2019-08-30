@@ -1,0 +1,7 @@
+<h2> GolfCourses </h2>
+
+<ul class="list-group list-group-flush col-lg-4">
+  <li class = "list-group-item" *ngFor="let gc of golfCourses">
+    <a [routerLink]="['/golfCourses',gc.id]" routerLinkActive="router-link-active" >{{ gc.courseName }}</a>
+</li>
+</ul>

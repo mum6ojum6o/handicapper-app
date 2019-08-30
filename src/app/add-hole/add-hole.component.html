@@ -1,0 +1,16 @@
+<form>
+  <div class="form-group">
+      <label for="">Hole Number</label>
+      <input class="form-control" [(ngModel)]="holeNumber" name="holeNumber" type="text" minlength="1"/>
+      <label for="">Par</label>
+      <input class="form-control" [(ngModel)]="par" name="par" type="text" />
+      <label for="">Stroke Index</label>
+      <input class="form-control" [(ngModel)]="strokeIndex" name="strokeIndex" type="text" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary form-control"
+    (click)="addHole()">Add</button>
+    <button class="btn btn-primary form-control"
+    type="reset">Reset</button>
+  </div>
+</form>

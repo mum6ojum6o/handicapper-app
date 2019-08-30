@@ -1,0 +1,26 @@
+<h3> New Member</h3>
+<div class="form-group">
+    <div  class="col-sm-3 col-md-3 col-lg-3">
+      <label for="">First Name</label>
+      <input class="form-control" [(ngModel)]="firstName" name="firstName" type="text" minlength="2"/>
+    </div>
+<div class="col-sm-3 col-md-3 col-lg-3">
+    <label for="">LastName</label>
+        <input class="form-control" [(ngModel)]="lastName" type="text" />
+
+</div>
+<div class="col-sm-3 col-md-3 col-lg-3">
+    <label for="">Phone</label>
+      <input  class="form-control" type="text" [(ngModel)]="phoneNumber" minlength="10">
+
+</div>
+<div class="col-sm-3 col-md-3 col-lg-3">
+    <label for="">email</label>
+      <input class="form-control" type="text" [(ngModel)]="email" minlength="10">
+</div>
+<div>
+    <button class="btn btn-primary" (click)="addPlayer()">Add</button>
+    <button class="btn btn-danger" type="reset" (click)="reset()">Reset</button>
+</div>
+
+</div>

@@ -1,0 +1,22 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Game Played On</th>
+      <th scope="col">Total Shots Takem</th>
+      <th scope="col">Hcp Index</th>
+      <th scope="col">Tee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let round of rounds; index as i" (click)="onClick(i)">
+      <td scope="col">{{ this.round?.gamePlayedOn }}</td>
+      <td scope="col">{{ this.round?.shotsTaken }}</td>
+      <td scope="col">{{ this.round?.hcpIndex }}</td>
+      <td scope="col">{{ this.round?.tee?.teeName }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div  >
+    <rounddetails *ngIf=this.expanded [roundDetails]="this.roundDetails"></rounddetails>
+</div>

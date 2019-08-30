@@ -1,0 +1,22 @@
+
+<h3>
+  Game Details
+</h3>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Hole Number</th>
+      <th scope="col">Par</th>
+      <th scope="col">Shots Taken</th>
+      <th scope="col">Status</th>
+      <!--<th></th>
+      <th></th>-->
+    </tr>
+  </thead>
+      <tr *ngFor="let aHole of roundDetails">
+        <td scope="col">{{aHole?.hole?.holeNumber}}</td>
+        <td scope="col">{{aHole?.hole?.par}}</td>
+        <td scope="col">{{aHole?.shotsTaken}}</td>
+        <td scope="col"></td>
+      </tr>
+</table>

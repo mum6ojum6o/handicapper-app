@@ -1,0 +1,20 @@
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">{{ this.golfCourse?.courseName}}</h1>
+
+    </div>
+  </div>
+<div class="container">
+<form>
+  <div class="col-sm-6 col-md-4 col-lg-4">
+    <app-holes [holes]="this.holes"></app-holes>
+    <app-add-hole [id]="this.id" *ngIf="this.addHole" (uploaded)="updateResults($event);" ></app-add-hole>
+  </div>
+<div class="col-sm-6 col-md-4 col-lg-4">
+  <a [routerLink]="['/golfCourses',this.golfCourse?.id,'players']" class="btn btn-primary ">View Members</a>
+  <button class="btn btn-primary" (click)="toggleHoleCreationFlag()">Add Course Details</button>
+</div>
+
+</form>
+</div>

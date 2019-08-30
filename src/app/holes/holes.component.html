@@ -1,0 +1,15 @@
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Hole #</th>
+    <th scope="col">Par</th>
+    <th scope="col">Stroke Index</th>
+    <!--<th scope="col"></th>-->
+  </tr>
+  <tr *ngFor="let hole of holes">
+    <td scope="col">{{ hole?.holeNumber }}</td>
+    <td scope="col">{{ hole?.par }}</td>
+    <td scope="col">{{ hole?.strokeIndex }}</td>
+  </tr>
+  </thead>
+</table>
