@@ -1,0 +1,42 @@
+<p>add-round-details works!</p>
+
+<!--<div>{{roundHeader?.id}}</div>
+<div>{{holes?.length}}</div>-->
+
+<form>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Hole Number</th>
+        <th>Par</th>
+        <th scope="col">Shots Taken</th>
+        <!--<th scope="col">Time</th>-->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hole of holes; index as i">
+        <td scope="col">
+          <span >{{hole.holeNumber}}</span>
+        </td>
+        <td scope="col" >
+            <span >{{hole.par}}</span>
+        </td>
+        <td scope="col">
+          <input
+          type="text" required name="shotsTaken" id="{{i}}"
+          [(ngModel)]="roundDetails[i].shotsTaken" required/>  </td>
+        <td scope="col">
+          <input type="date"
+          [ngModel]="roundDetails[i].timestamp"
+          name="timestamp"
+          /></td>
+      </tr>
+
+
+    </tbody>
+  </table>
+  <div class="form-group">
+    <button class="btn btn-info" (click)="addDetails()">Submit</button>
+    <button class="btn btn-danger">Reset</button>
+  </div>
+</form>

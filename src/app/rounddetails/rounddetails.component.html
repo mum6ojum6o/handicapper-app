@@ -13,10 +13,29 @@
       <th></th>-->
     </tr>
   </thead>
-      <tr *ngFor="let aHole of roundDetails">
-        <td scope="col">{{aHole?.hole?.holeNumber}}</td>
-        <td scope="col">{{aHole?.hole?.par}}</td>
-        <td scope="col">{{aHole?.shotsTaken}}</td>
-        <td scope="col"></td>
+      <tr *ngFor="let aHole of roundDetails; index as i">
+        <td scope="col">
+          {{aHole?.hole?.holeNumber}}
+        </td>
+        <td scope="col">
+          {{aHole?.hole?.par}}
+        </td>
+        <td scope="col">
+            <div *ngIf="!(this.updateRequest && this.updateRowIndex==i)">
+              {{aHole?.shotsTaken}}
+          </div>
+          <div *ngIf="this.updateRequest && this.updateRowIndex==i">
+            <input type="text" [(ngModel)]="this.roundDetails[i].shotsTaken" name="shotsTaken" class="form-control"/>
+          </div>
+        </td>
+        <td scope="col">
+          <div *ngIf="this.updateRequest && this.updateRowIndex==i">
+            <button type="submit" class="btn btn-primary" (click)="update()">Submit</button>
+            <button class="btn btn-danger" (click)="updateCancelled()">Cancel</button>
+          </div>
+          <div *ngIf="!(this.updateRequest && this.updateRowIndex==i)">
+            <button class="btn btn-primary" (click)="updatedRequested(i)">Edit</button>
+          </div>
+        </td>
       </tr>
 </table>

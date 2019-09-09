@@ -4,6 +4,7 @@ import { Observable, combineLatest, throwError, } from 'rxjs';
 import { map, switchMap, catchError} from 'rxjs/operators';
 import { AppError } from '../common/apperror';
 import { PlayerslistService } from '../services/playerslist.service';
+import { InterComponentService } from '../services/inter-component.service';
 
 @Component({
   selector: 'app-playerlist',
@@ -14,7 +15,8 @@ export class PlayerlistComponent implements OnInit {
   players: any[];
   constructor(
     private route: ActivatedRoute,
-    private service: PlayerslistService
+    private service: PlayerslistService,
+    private icService: InterComponentService
   ) { }
 
   ngOnInit() {
@@ -36,5 +38,9 @@ export class PlayerlistComponent implements OnInit {
      } );
   }
 
+  clickedPlayer(index: number) {
+    console.log('player round clicked!!!'+index+ this.players[index]);
+    this.icService.setData(this.players[index]);
+  }
 
 }

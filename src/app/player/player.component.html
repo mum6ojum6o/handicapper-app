@@ -17,8 +17,10 @@ Player Profile
         <td scope="col">{{this.player?.email}}</td>
         <td scope="col">{{this.player?.phoneNumber}}</td>
         <td scope="col">
-          <button class="btn btn-primary" diabled="true">Update</button>
+          <button class="btn btn-primary" disabled="true">Update</button>
           <button class="btn btn-danger">Reset</button>
+          <a [routerLink]="['add-rounds']"
+          class="btn btn-primary">Add Score</a>
         </td>
       </tr>
 </table>

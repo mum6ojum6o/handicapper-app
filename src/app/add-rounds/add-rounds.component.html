@@ -1,0 +1,21 @@
+<h3>Scorecard</h3>
+<form>
+  <div class="form-group">
+    <label class="col-lg-3">Game Played On:</label>
+    <input class=" col-sm-3 col-md-3 col-lg-3" [(ngModel)]="gamePlayedOn" type="date" name="gamePlayedOn"/>
+  </div>
+  <div class="form-group col-md-3">
+    <label class="" for="teeId">Select Tee</label>
+    <select [(ngModel)]="teeId" name="teeId" id="teeId">
+      <option value="">Select a Tee</option>
+      <option  *ngFor="let tee of player?.memberOf[0]?.tees" [value]=tee.id>{{tee.teeName}}</option>
+    </select>
+
+  </div>
+  <button type="submit" (click)="addRoundHeader()" [disabled]="roundHeaderAdded">Add Initial details</button>
+</form>
+
+<app-add-round-details *ngIf="this.roundHeaderAdded"
+[roundHeader]="roundHeaderFromServer"
+[holes]="this.player?.memberOf[0]?.holes">
+</app-add-round-details>

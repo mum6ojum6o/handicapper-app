@@ -1,0 +1,27 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Color</th>
+      <th scope="col">Course Rating</th>
+      <th scope="col">Slope Rating</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let tee of tees">
+      <th scope="col">{{ tee?.teeName }}</th>
+      <th scope="col">{{ tee?.courseRating }}</th>
+      <th scope="col">{{ tee?.slopeRating }}</th>
+    </tr>
+</table>
+<div *ngIf=this.addTee>
+  <form >
+    <label>Tee Name or Color</label>
+    <input type="text" name="teeName" [(ngModel)]="teeName">
+    <label>Course Rating</label>
+    <input type="text" name="courseRating" [(ngModel)]="courseRating">
+    <label>Stroke Index</label>
+    <input type="text" name="strokeIndex" [(ngModel)]="slopeRating">
+    <button class="btn btn-info" (click)="add()">Add</button>
+    <button class="btn btn-danger" type="reset">Reset</button>
+    <a href="" class="btn btn-info">Add Score</a>
+  </form>
+</div>

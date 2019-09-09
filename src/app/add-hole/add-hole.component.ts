@@ -31,7 +31,7 @@ export class AddHoleComponent implements OnInit {
 
     }).subscribe((response) => {
       console.log(response);
-      alert(response.holeNumber + ' hole added');
+      //alert(response.holeNumber + ' hole added');
       this.holeAdditionConfirmed(response);
     }, error => {
       alert('An unexpected error occured.');

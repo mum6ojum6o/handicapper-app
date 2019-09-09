@@ -18,6 +18,9 @@ import { RoundsComponent } from './rounds/rounds.component';
 import { RounddetailsComponent } from './rounddetails/rounddetails.component';
 import { AddPlayerComponent } from './add-player/add-player.component';
 import { AddHoleComponent } from './add-hole/add-hole.component';
+import { TeeComponent } from './tee/tee.component';
+import { AddRoundsComponent } from './add-rounds/add-rounds.component';
+import { AddRoundDetailsComponent } from './add-round-details/add-round-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,10 @@ import { AddHoleComponent } from './add-hole/add-hole.component';
     RoundsComponent,
     RounddetailsComponent,
     AddPlayerComponent,
-    AddHoleComponent
+    AddHoleComponent,
+    TeeComponent,
+    AddRoundsComponent,
+    AddRoundDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +53,7 @@ import { AddHoleComponent } from './add-hole/add-hole.component';
       { path: 'golfCourses/:id', component: SinglegolfcourseComponent},
       { path: 'golfCourse', component: GolfcourseComponent},
       { path: 'players/:id', component: PlayerComponent},
+      { path: 'players/:id/add-rounds', component: AddRoundsComponent},
     /* {path: 'archive/:year/:month', component: ArchiveViewComponent},
       {path: 'archive', component: ArchiveComponent},*/
       {path: '**', component: NotFoundComponent}

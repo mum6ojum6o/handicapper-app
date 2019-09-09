@@ -9,7 +9,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let round of rounds; index as i" (click)="onClick(i)">
-      <td scope="col">{{ this.round?.gamePlayedOn }}</td>
+      <td scope="col">
+        {{round.gamePlayedOn}}
+      </td>
       <td scope="col">{{ this.round?.shotsTaken }}</td>
       <td scope="col">{{ this.round?.hcpIndex }}</td>
       <td scope="col">{{ this.round?.tee?.teeName }}</td>

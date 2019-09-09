@@ -8,13 +8,14 @@
       <th scope="col">email</th>
       <th scope="col">Rounds Played</th>
     </tr>
-    <tr *ngFor="let player of players">
+    <tr *ngFor="let player of players;let i = index">
       <td scope="col">{{ player?.firstName }}</td>
       <td scope="col">{{ player?.lastName }}</td>
       <td scope="col">{{ player?.phoneNumber }}</td>
       <td scope="col">{{ player?.email }}</td>
       <td scope="col">
-        <a [routerLink]="['/players', this.player?.id ]">
+        <a [routerLink]="['/players', this.player?.id ]"
+        (click)="clickedPlayer(i)">
           {{ player?.rounds?.length }}
         </a>
       </td>

@@ -5,9 +5,9 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class PlayerService extends DataService {
+export class TeesService extends DataService{
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'http://localhost:8080/players/');
+    super(httpClient,'http://localhost:8080/tees');
    }
 }

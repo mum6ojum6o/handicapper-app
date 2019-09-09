@@ -51,4 +51,12 @@ export class DataService {
       );
       /*return this.httpClient.post(this.url, resource)*/;
      }
+
+     update(resource: any) {
+       return this.httpClient.put(this.url, resource).pipe(
+         map( response => {
+           return response as any;
+          }),
+          catchError(this.handleError));
+     }
 }

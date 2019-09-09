@@ -15,8 +15,10 @@ import { AddHoleComponent } from '../add-hole/add-hole.component';
 export class SinglegolfcourseComponent implements OnInit {
 golfCourse: any;
 holes: any[];
+tees: any[];
 id: number;
 addHole: boolean;
+addTee: boolean;
   constructor(
     private route: ActivatedRoute,
     private service: SinglegolfcourseService
@@ -42,10 +44,14 @@ addHole: boolean;
       )).subscribe( golfCourse => {
         this.golfCourse = golfCourse;
         this.holes = this.golfCourse.holes;
+        this.tees = this.golfCourse.tees;
       });
   }
   private toggleHoleCreationFlag() {
     this.addHole = !this.addHole;
+  }
+  private toggleTeeCreationFlag() {
+    this.addTee = !this.addTee;
   }
 
   private updateResults($result) {
@@ -53,4 +59,10 @@ addHole: boolean;
     this.toggleHoleCreationFlag();
     console.log(this.holes.push($result));
   }
+
+  private updateTees($result) {
+    this.toggleTeeCreationFlag();
+    this.tees.push($result);
+  }
+
 }
