@@ -1,26 +1,39 @@
 <h3> New Member</h3>
-<div class="form-group">
-    <div  class="col-sm-3 col-md-3 col-lg-3">
-      <label for="">First Name</label>
-      <input class="form-control" [(ngModel)]="firstName" name="firstName" type="text" minlength="2"/>
-    </div>
-<div class="col-sm-3 col-md-3 col-lg-3">
-    <label for="">LastName</label>
-        <input class="form-control" [(ngModel)]="lastName" type="text" />
+<form #f="ngForm">
+  <div class="form-group">
+      <div  class="col-sm-3 col-md-3 col-lg-3">
+        <label for="">First Name</label>
+        <input class="form-control"  ngModel #nameFirst="ngModel"  [(ngModel)]="firstName" name="firstName" type="text" id="firstName" required/>
+        <div class="alert alert-danger" *ngIf="nameFirst.touched && !nameFirst.valid">
+          Firstname is required.
+        </div>
+      </div>
+  <div class="col-sm-3 col-md-3 col-lg-3">
+      <label for="">LastName</label>
+          <input class="form-control" ngModel #nameLast="ngModel"  [(ngModel)]="lastName" type="text"  name="lastName" required/>
+      <div class="alert alert-danger" *ngIf="nameLast.touched && !nameLast.valid">
+          Lastname is required.
+      </div>
+  </div>
+  <div class="col-sm-3 col-md-3 col-lg-3">
+      <label for="">Phone</label>
+      <input  class="form-control" ngModel #phone="ngModel" type="number" name="phoneNumber" [(ngModel)]="phoneNumber" minlength="10" required>
+      <div class="alert alert-danger" *ngIf="phone.touched && !phone.valid">
+          PhoneNumber is required. Please enter only 10 digits.
+      </div>
 
-</div>
-<div class="col-sm-3 col-md-3 col-lg-3">
-    <label for="">Phone</label>
-      <input  class="form-control" type="text" [(ngModel)]="phoneNumber" minlength="10">
+  </div>
+  <div class="col-sm-3 col-md-3 col-lg-3">
+      <label for="">email</label>
+      <input class="form-control" type="email" ngModel #mail="ngModel"  name="email" [(ngModel)]="email" minlength="10">
+      <div class="alert alert-danger" *ngIf="mail.touched && !mail.valid">
+          Email is required.
+      </div>
+  </div>
+  <div>
+      <button class="btn btn-primary" (click)="addPlayer()" [disabled]=" !f.valid">Add</button>
+      <button class="btn btn-danger" type="reset" (click)="reset()">Reset</button>
+  </div>
 
-</div>
-<div class="col-sm-3 col-md-3 col-lg-3">
-    <label for="">email</label>
-      <input class="form-control" type="text" [(ngModel)]="email" minlength="10">
-</div>
-<div>
-    <button class="btn btn-primary" (click)="addPlayer()">Add</button>
-    <button class="btn btn-danger" type="reset" (click)="reset()">Reset</button>
-</div>
-
-</div>
+  </div>
+</form>
