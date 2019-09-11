@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RoundDetail } from '../model/round-details-model';
 import { RoundDetailsService } from '../services/round-details.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-round-details',
   templateUrl: './add-round-details.component.html',
   styleUrls: ['./add-round-details.component.css']
 })
-export class AddRoundDetailsComponent implements OnInit{
+export class AddRoundDetailsComponent implements OnInit {
 
 @Input() roundHeader: any;
 @Input() holes: any;
@@ -21,7 +22,10 @@ ngOnInit(): void {
     this.roundDetails[i].roundId = this.roundHeader.id;
     }
 }
-  constructor(private service: RoundDetailsService) {
+  constructor(
+    private service: RoundDetailsService,
+    private router: Router) {
+
   }
 
    public addDetails() {
@@ -32,6 +36,7 @@ ngOnInit(): void {
     .add(roundDetails)
     .subscribe((response) => {
       console.log("Round Details!!!!" + response);
+      this.router.navigate(['/players/'], this.roundHeader.playedBy);
     });
    }
    public logChange(i) {

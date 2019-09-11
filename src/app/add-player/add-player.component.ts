@@ -43,7 +43,7 @@ export class AddPlayerComponent implements OnInit {
       'lastName': this.lastName,
       'phoneNumber': this.phoneNumber,
       'email': this.email,
-      'memberOf': [{'id': 3}]
+      'memberOf': [{'id': this.parameter}]
 
     }).subscribe((response) => {
       console.log(response);
