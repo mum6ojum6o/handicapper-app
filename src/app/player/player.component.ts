@@ -15,6 +15,8 @@ import { InterComponentService } from '../services/inter-component.service';
 export class PlayerComponent implements OnInit {
   player: any;
   rounds: any[];
+  golfCourseId: number;
+  playerId: number;
   constructor(
     private route: ActivatedRoute,
     private service: PlayerService,
@@ -47,9 +49,11 @@ export class PlayerComponent implements OnInit {
       ])
         .pipe(
           switchMap( combined => {
-              let id = combined[0].getAll('id')[0];
-              console.log('id from URL: ' + id);
-              this.service.setUrl('http://localhost:8080/players/' + id);
+              this.golfCourseId = +combined[0].getAll('id')[0];
+              this.playerId = +combined[0].getAll('playerId')[0];
+              console.log(combined);
+              console.log('id from URL: ' + this.golfCourseId);
+              this.service.setUrl('http://localhost:8080/golfCourses/' + this.golfCourseId + '/players/' + this.playerId);
               return this.service.getAll();
           }),
           catchError( (error: Response) => {
@@ -57,6 +61,7 @@ export class PlayerComponent implements OnInit {
           }
         )).subscribe( player => {
           this.player = player;
+          console.log(this.player);
           this.rounds = player.rounds;
           this.roundService.setRounds(this.player.rounds);
         });

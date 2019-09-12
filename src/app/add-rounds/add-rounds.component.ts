@@ -19,6 +19,8 @@ private headerStatus: boolean;
  teeId: number;
  roundHeaderAdded: boolean;
  roundHeaderFromServer: any;
+ playerId: number;
+ golfCourseId: number;
   constructor(private route: ActivatedRoute,
     private icService: InterComponentService,
     private playerService: PlayerService,
@@ -50,15 +52,17 @@ private headerStatus: boolean;
     ])
       .pipe(
         switchMap( combined => {
-            let id = combined[0].getAll('id')[0];
-            console.log('id from URL: ' + id);
-            this.playerService.setUrl('http://localhost:8080/players/' + id);
+          console.log(combined);
+            this.golfCourseId = +combined[0].getAll('id')[0];
+            this.playerId = +combined[0].getAll('playerId')[0];
+            this.playerService.setUrl('http://localhost:8080/players/' + this.playerId);
             return this.playerService.getAll();
         }),
         catchError( (error: Response) => {
           return throwError(new AppError(error));
         }
       )).subscribe( player => {
+
         this.player = player;
       });
   }

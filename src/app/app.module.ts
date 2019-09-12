@@ -52,8 +52,8 @@ import { AddRoundDetailsComponent } from './add-round-details/add-round-details.
       { path: 'golfCourses/:id/players/addplayer', component: AddPlayerComponent},
       { path: 'golfCourses/:id', component: SinglegolfcourseComponent},
       { path: 'golfCourse', component: GolfcourseComponent},
-      { path: 'players/:id', component: PlayerComponent},
-      { path: 'players/:id/add-rounds', component: AddRoundsComponent},
+      { path: 'golfCourse/:id/players/:playerId', component: PlayerComponent},
+      { path: 'golfCourse/:id/players/:playerId/add-rounds', component: AddRoundsComponent},
     /* {path: 'archive/:year/:month', component: ArchiveViewComponent},
       {path: 'archive', component: ArchiveComponent},*/
       {path: '**', component: NotFoundComponent}

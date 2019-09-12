@@ -13,6 +13,7 @@ import { InterComponentService } from '../services/inter-component.service';
 })
 export class PlayerlistComponent implements OnInit {
   players: any[];
+  golfCourseId: number;
   constructor(
     private route: ActivatedRoute,
     private service: PlayerslistService,
@@ -25,9 +26,9 @@ export class PlayerlistComponent implements OnInit {
       this.route.queryParamMap
     ]).pipe(
       switchMap( combined => {
-          let id = combined[0].getAll('id')[0];
-          console.log('id from URL: ' + id);
-          this.service.setUrl('http://localhost:8080/golfCourses/' + id + '/players');
+          this.golfCourseId = +combined[0].getAll('id')[0];
+          console.log('golfcourse id from URL: ' + this.golfCourseId);
+          this.service.setUrl('http://localhost:8080/golfCourses/' + this.golfCourseId + '/players');
           return this.service.getAll();
       }),
       catchError( (error: Response) => {
@@ -35,6 +36,7 @@ export class PlayerlistComponent implements OnInit {
       })
     ).subscribe( players => {
       this.players = players;
+      console.log(this.players);
      } );
   }
 

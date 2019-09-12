@@ -14,7 +14,7 @@
       <td scope="col">{{ player?.phoneNumber }}</td>
       <td scope="col">{{ player?.email }}</td>
       <td scope="col">
-        <a [routerLink]="['/players', this.player?.id ]"
+        <a [routerLink]="['/golfCourse/'+this.golfCourseId+'/players', this.player?.id ]"
         (click)="clickedPlayer(i)">
           {{ player?.rounds?.length }}
         </a>
