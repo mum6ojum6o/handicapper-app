@@ -6,7 +6,7 @@ import { combineLatest, throwError } from 'rxjs';
 import { AppError } from '../common/apperror';
 import { ActivatedRoute } from '@angular/router';
 import { RoundsService } from '../services/rounds.service';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-add-rounds',
   templateUrl: './add-rounds.component.html',
@@ -55,7 +55,7 @@ private headerStatus: boolean;
           console.log(combined);
             this.golfCourseId = +combined[0].getAll('id')[0];
             this.playerId = +combined[0].getAll('playerId')[0];
-            this.playerService.setUrl('http://localhost:8080/players/' + this.playerId);
+            this.playerService.setUrl(environment.url + '/players/' + this.playerId);
             return this.playerService.getAll();
         }),
         catchError( (error: Response) => {
@@ -80,8 +80,8 @@ private headerStatus: boolean;
       console.log(response);
       this.roundHeaderAdded = true;
       this.roundHeaderFromServer =  response;
+      this.player.rounds.push(this.roundHeaderFromServer);
     }, error => {
-
       alert('An unexpected error occured.');
     });
   }

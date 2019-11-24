@@ -21,6 +21,10 @@ import { AddHoleComponent } from './add-hole/add-hole.component';
 import { TeeComponent } from './tee/tee.component';
 import { AddRoundsComponent } from './add-rounds/add-rounds.component';
 import { AddRoundDetailsComponent } from './add-round-details/add-round-details.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalHandicapperComponent } from './modal-handicapper/modal-handicapper.component';
+import { ModalContentComponent } from './modal-content/modal-content.component';
+import { ModalDirective } from './modal-content/modal-directive/modal-directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,13 +42,17 @@ import { AddRoundDetailsComponent } from './add-round-details/add-round-details.
     AddHoleComponent,
     TeeComponent,
     AddRoundsComponent,
-    AddRoundDetailsComponent
+    AddRoundDetailsComponent,
+    ModalHandicapperComponent,
+    ModalContentComponent,
+    ModalDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent},
       { path: 'golfCourses/:id/holes', component: HolesComponent},
@@ -53,11 +61,16 @@ import { AddRoundDetailsComponent } from './add-round-details/add-round-details.
       { path: 'golfCourses/:id', component: SinglegolfcourseComponent},
       { path: 'golfCourse', component: GolfcourseComponent},
       { path: 'golfCourse/:id/players/:playerId', component: PlayerComponent},
+      { path: 'golfCourse/:id/players/:playerId?refresh=1', component: PlayerComponent},
       { path: 'golfCourse/:id/players/:playerId/add-rounds', component: AddRoundsComponent},
     /* {path: 'archive/:year/:month', component: ArchiveViewComponent},
       {path: 'archive', component: ArchiveComponent},*/
       {path: '**', component: NotFoundComponent}
     ])
+  ],
+  entryComponents: [
+    ModalContentComponent,
+    AddRoundDetailsComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErroHandler}

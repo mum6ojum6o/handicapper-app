@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerService } from '../services/player.service';
-import {  switchMap, catchError } from 'rxjs/operators';
+import {  switchMap, catchError, map } from 'rxjs/operators';
 import { combineLatest, throwError } from 'rxjs';
 import { AppError } from '../common/apperror';
 import { RoundsService } from '../services/rounds.service';
 import { InterComponentService } from '../services/inter-component.service';
-
+import { CalculatehandicapserviceService } from '../services/calculatehandicapservice.service';
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'player',
   templateUrl: './player.component.html',
@@ -17,11 +18,13 @@ export class PlayerComponent implements OnInit {
   rounds: any[];
   golfCourseId: number;
   playerId: number;
+  handicap: number;
   constructor(
     private route: ActivatedRoute,
     private service: PlayerService,
     private roundService: RoundsService,
-    private icService: InterComponentService) { }
+    private icService: InterComponentService,
+    private handicapCalculator: CalculatehandicapserviceService) { }
 
   ngOnInit() {
     /*
@@ -33,16 +36,21 @@ export class PlayerComponent implements OnInit {
       this.player = this.icService.getData();
       if (this.player != null ) {
         console.log(this.player);
-        if (this.player != null) {
-          this.rounds = this.player.rounds;
-        }
+        this.rounds = this.player.rounds;
+        this.playerId = this.player.id;
+        this.golfCourseId = this.player.memberOf[0].id;
+        console.log('id: ' + this.golfCourseId);
+        this.massageRoundDetails();
+        this.handicapCalculator.setRounds(this.rounds);
+        this.handicap = this.handicapCalculator.calculateHandicap();
       }
       else {
           this.loadPlayerFromServer();
       }
+      this.checkForNewlyAddedRounds();
     }
 
-    public loadPlayerFromServer(){
+    public loadPlayerFromServer() {
       combineLatest([
         this.route.paramMap,
         this.route.queryParamMap
@@ -53,7 +61,7 @@ export class PlayerComponent implements OnInit {
               this.playerId = +combined[0].getAll('playerId')[0];
               console.log(combined);
               console.log('id from URL: ' + this.golfCourseId);
-              this.service.setUrl('http://localhost:8080/golfCourses/' + this.golfCourseId + '/players/' + this.playerId);
+              this.service.setUrl(environment.url + '/golfCourses/' + this.golfCourseId + '/players/' + this.playerId);
               return this.service.getAll();
           }),
           catchError( (error: Response) => {
@@ -63,8 +71,28 @@ export class PlayerComponent implements OnInit {
           this.player = player;
           console.log(this.player);
           this.rounds = player.rounds;
+          this.massageRoundDetails();
+          /*this.rounds.forEach( r => {
+            r.handicapDifferential = r.handicapDifferential * 0.96;
+            r.gamePlayedOn = new Date(r.gamePlayedOn).toLocaleDateString();
+          });*/
           this.roundService.setRounds(this.player.rounds);
+          this.handicapCalculator.setRounds(this.rounds);
+          this.handicap = this.handicapCalculator.calculateHandicap();
+          console.log("handicap:" + this.handicap);
         });
+    }
+
+    private massageRoundDetails() {
+      this.rounds.forEach( r => {
+        r.handicapDifferential = r.handicapDifferential * 0.96;
+        r.gamePlayedOn = new Date(r.gamePlayedOn).toLocaleDateString();
+      });
+    }
+    private checkForNewlyAddedRounds() {
+      let response = this.route.paramMap.pipe(map(() => window.history.state));
+      response.subscribe(x => console.log("checkForNewlyAddedRounds:"+x));
+      //console.log("new object added:"+ response.id);
     }
 
 }

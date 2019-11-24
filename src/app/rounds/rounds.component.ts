@@ -5,16 +5,13 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './rounds.component.html',
   styleUrls: ['./rounds.component.css']
 })
-export class RoundsComponent implements OnInit {
+export class RoundsComponent {
   @Input() rounds: any[];
+  @Input() holes: any[];
   roundDetails: any[];
   expanded: boolean;
   constructor() {
     this.expanded = false;
-  }
-
-  ngOnInit() {
-    console.log(this.rounds);
   }
 
   onClick(i: number) {

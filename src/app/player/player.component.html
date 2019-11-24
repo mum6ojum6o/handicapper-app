@@ -9,6 +9,7 @@ Player Profile
           <th scope="col">Last Name</th>
           <th scope="col">Email</th>
           <th scope="col">Phonenumber</th>
+          <th scope="col">Current Handicap</th>
           <th scope="col"></th>
         </tr>
   </thead>
@@ -17,6 +18,7 @@ Player Profile
         <td scope="col">{{this.player?.lastName}}</td>
         <td scope="col">{{this.player?.email}}</td>
         <td scope="col">{{this.player?.phoneNumber}}</td>
+        <td scope="col">{{this.handicap}}</td>
         <td scope="col">
           <button class="btn btn-primary" disabled="true">Update</button>
           <button class="btn btn-danger">Reset</button>
@@ -26,4 +28,5 @@ Player Profile
       </tr>
 </table>
 </div>
-<rounds [rounds]="this.rounds"></rounds>
+<rounds [rounds]="this.rounds" [holes]="this.player?.memberOf[0]?.holes"></rounds>
+

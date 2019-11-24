@@ -4,9 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { AppError } from './common/apperror';
 
-@Injectable({
+/*@Injectable({
   providedIn: 'root'
-})
+})*/
 export class DataService {
   constructor(
     private httpClient: HttpClient,

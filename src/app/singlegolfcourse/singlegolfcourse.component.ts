@@ -5,7 +5,7 @@ import { combineLatest, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { AppError } from '../common/apperror';
 import { AddHoleComponent } from '../add-hole/add-hole.component';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'singlegolfcourse',
   templateUrl: './singlegolfcourse.component.html',
@@ -35,7 +35,7 @@ addTee: boolean;
         switchMap( combined => {
             this.id = +combined[0].getAll('id')[0];
             console.log('id from URL: ' + this.id);
-            this.service.setUrl('http://localhost:8080/golfCourses/' + this.id);
+            this.service.setUrl(environment.url + '/golfCourses/' + this.id);
             return this.service.getAll();
         }),
         catchError( (error: Response) => {
@@ -47,20 +47,24 @@ addTee: boolean;
         this.tees = this.golfCourse.tees;
       });
   }
-  private toggleHoleCreationFlag() {
+  public toggleHoleCreationFlag() {
     this.addHole = !this.addHole;
   }
-  private toggleTeeCreationFlag() {
+  public toggleTeeCreationFlag() {
     this.addTee = !this.addTee;
   }
 
-  private updateResults($result) {
+  public updateResults($result) {
     console.log("In Update Results");
     this.toggleHoleCreationFlag();
     console.log(this.holes.push($result));
   }
 
-  private updateTees($result) {
+
+  public newHoleToBeAdded() {
+    return this.addHole;
+  }
+  public updateTees($result) {
     this.toggleTeeCreationFlag();
     this.tees.push($result);
   }

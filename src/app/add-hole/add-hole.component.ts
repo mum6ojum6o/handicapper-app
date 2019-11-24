@@ -21,7 +21,7 @@ export class AddHoleComponent implements OnInit {
   ngOnInit() {
   }
 
-  private addHole() {
+  public addHole() {
     console.log(this.id);
     this.service.add({
       'holeNumber': this.holeNumber,
@@ -31,7 +31,7 @@ export class AddHoleComponent implements OnInit {
 
     }).subscribe((response) => {
       console.log(response);
-      //alert(response.holeNumber + ' hole added');
+      // alert(response.holeNumber + ' hole added');
       this.holeAdditionConfirmed(response);
     }, error => {
       alert('An unexpected error occured.');

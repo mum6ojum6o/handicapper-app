@@ -8,15 +8,19 @@
       <th scope="col">Hole Number</th>
       <th scope="col">Par</th>
       <th scope="col">Shots Taken</th>
+      <th scope="col">Adjusted Shots</th>
       <th scope="col">Status
-        <button class="btn btn-primary">
-          Add Hole Played
-        </button>
       </th>
       <!--<th></th>-->
     </tr>
   </thead>
+      <!--<tr>
+          <td *ngIf="this.addRoundDetailFlag">
+              <app-add-round-details [roundHeader]="this.roundHeader"></app-add-round-details>
+            </td>
+      </tr> -->
       <tr *ngFor="let aHole of roundDetails; index as i">
+
         <td scope="col">
           {{aHole?.hole?.holeNumber}}
         </td>
@@ -28,7 +32,13 @@
               {{aHole?.shotsTaken}}
           </div>
           <div *ngIf="this.updateRequest && this.updateRowIndex==i">
-            <input type="text" [(ngModel)]="this.roundDetails[i].shotsTaken" name="shotsTaken" class="form-control"/>
+            <input type="text" [(ngModel)]="this.roundDetails[i].shotsTaken"
+            name="shotsTaken" class="form-control"/>
+          </div>
+        </td>
+        <td scope="col">
+            <div *ngIf="!(this.updateRequest && this.updateRowIndex==i)">
+              {{aHole?.adjustedScore}}
           </div>
         </td>
         <td scope="col">
@@ -42,3 +52,10 @@
         </td>
       </tr>
 </table>
+<button type="button" class="btn btn-primary btn-lg"
+*ngIf="this.getRoundDetailsSize() < 18" data-toggle="modal" data-target="#addRoundModal" (click)="this.openModal()">
+  Add Round
+</button>
+
+<ng-template modal-host></ng-template>
+

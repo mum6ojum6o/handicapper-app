@@ -20,7 +20,7 @@ export class TeeComponent  {
   golfCourse: any;
   constructor(private service: TeesService) { this.addTee = false; }
 
-  private add() {
+  public add() {
     //console.log(this.id);
     this.service.add({
       'teeName': this.teeName,
@@ -31,11 +31,14 @@ export class TeeComponent  {
     }).subscribe((response) => {
       console.log(response);
       this.teeAddedConfirmed(response);
+      this.teeName = null;
+      this.slopeRating = 0;
+      this.courseRating = 0.0;
     }, error => {
       alert('An unexpected error occured.');
     });
   }
-  teeAddedConfirmed(tee: any){
+  public teeAddedConfirmed(tee: any){
       this.teeAdded.emit(tee);
   }
 

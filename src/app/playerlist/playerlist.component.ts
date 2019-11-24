@@ -5,7 +5,7 @@ import { map, switchMap, catchError} from 'rxjs/operators';
 import { AppError } from '../common/apperror';
 import { PlayerslistService } from '../services/playerslist.service';
 import { InterComponentService } from '../services/inter-component.service';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-playerlist',
   templateUrl: './playerlist.component.html',
@@ -28,7 +28,7 @@ export class PlayerlistComponent implements OnInit {
       switchMap( combined => {
           this.golfCourseId = +combined[0].getAll('id')[0];
           console.log('golfcourse id from URL: ' + this.golfCourseId);
-          this.service.setUrl('http://localhost:8080/golfCourses/' + this.golfCourseId + '/players');
+          this.service.setUrl(environment.url + '/golfCourses/' + this.golfCourseId + '/players');
           return this.service.getAll();
       }),
       catchError( (error: Response) => {

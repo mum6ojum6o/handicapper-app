@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let hole of holes; index as i">
+      <tr *ngFor="let hole of holes  ; index as i">
         <td scope="col">
           <span >{{hole.holeNumber}}</span>
         </td>
@@ -27,11 +27,6 @@
           <input
           type="text" required name="shotsTaken" id="{{i}}"
           [(ngModel)]="roundDetails[i].shotsTaken" required/>  </td>
-        <td scope="col">
-          <input type="date"
-          [ngModel]="roundDetails[i].timestamp"
-          name="timestamp"
-          /></td>
       </tr>
 
 

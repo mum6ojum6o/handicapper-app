@@ -38,6 +38,7 @@ export class AddPlayerComponent implements OnInit {
   }
 
   addPlayer() {
+
     this.service.add({
       'firstName': this.firstName,
       'lastName': this.lastName,
@@ -47,7 +48,7 @@ export class AddPlayerComponent implements OnInit {
 
     }).subscribe((response) => {
       console.log(response);
-      this.router.navigate(['/golfCourses/'+this.parameter+'/players']);
+      this.router.navigate(['/golfCourses/' + this.parameter + '/players']);
       //alert(response.firstName +' player added');
 
     }, error => {
