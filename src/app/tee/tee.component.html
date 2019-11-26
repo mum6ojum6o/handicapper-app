@@ -1,3 +1,4 @@
+<H3>Tees Summary</H3>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -12,23 +13,3 @@
       <th scope="col">{{ tee?.slopeRating }}</th>
     </tr>
 </table>
-<div *ngIf=this.addTee>
-  <form >
-    <div class="form-group">
-      <label>Tee Color</label>
-      <input type="text" class="form-control" name="teeName" [(ngModel)]="teeName">
-    </div>
-    <div class="form-group">
-      <label>Course Rating</label>
-      <input type="text" name="courseRating" class="form-control" [(ngModel)]="courseRating">
-    </div>
-    <div class="form-group">
-      <label>Slope Rating</label>
-      <input type="text" name="strokeIndex" class="form-control" [(ngModel)]="slopeRating">
-  </div>
-  <div class="form-group">
-    <button class="btn btn-info" (click)="this.add()">Add</button>
-    <button class="btn btn-danger" type="reset">Reset</button>
-  </div>
-  </form>
-</div>

@@ -25,6 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ModalHandicapperComponent } from './modal-handicapper/modal-handicapper.component';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ModalDirective } from './modal-content/modal-directive/modal-directive';
+import { AddTeeComponent } from './add-tee/add-tee.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { ModalDirective } from './modal-content/modal-directive/modal-directive'
     AddRoundDetailsComponent,
     ModalHandicapperComponent,
     ModalContentComponent,
-    ModalDirective
+    ModalDirective,
+    AddTeeComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { ModalDirective } from './modal-content/modal-directive/modal-directive'
   ],
   entryComponents: [
     ModalContentComponent,
-    AddRoundDetailsComponent
+    AddRoundDetailsComponent,
+    AddTeeComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErroHandler}

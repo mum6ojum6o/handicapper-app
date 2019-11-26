@@ -2,31 +2,34 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">{{ this.golfCourse?.courseName}}</h1>
-
     </div>
-  </div>
+</div>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-5 col-lg-4">
+    <div class="col-md-7 col-lg-7">
       <app-holes [holes]="this.holes"></app-holes>
-      <app-add-hole [id]="this.id" *ngIf="this.newHoleToBeAdded()" (uploaded)="this.updateResults($event);" ></app-add-hole>
+
     </div>
+    <div class=" col-md-5 col-lg-4" >
+      <app-add-hole [id]="this.id" *ngIf="this.newHoleToBeAdded()" (uploaded)="this.updateResults($event);" >
+      </app-add-hole>
+  </div>
     <div class=" col-md-4 col-lg-4">
         <app-tee
         [tees]="this.tees"
-        [addTee]="this.addTee"
         [golfCourseId]="this.id"
-        (teeAdded)="updateTees($event);"></app-tee>
+        (teeAdded)="updateTees($event);">
+      </app-tee>
     </div>
     <div class="form-group ">
-      <a [routerLink]="['/golfCourses',this.golfCourse?.id,'players']" class="btn btn-primary col-sm-3">View Members</a>
-      <button class="btn btn-primary col-sm-3" (click)="this.toggleHoleCreationFlag()">Add Hole Details</button>
-      <button class="btn btn-primary col-sm-3" (click)="this.toggleTeeCreationFlag()" >Add Tee Details</button>
+      <a [routerLink]="['/golfCourses',this.golfCourse?.id,'players']" class="btn btn-primary col-sm-3 col-md-5 mr-1">View Members</a>
+      <button class="btn btn-primary col-sm-3 col-md-4 mr-1" (click)="this.toggleHoleCreationFlag()" *ngIf="this.holes.length < 18">Add Hole Details</button>
+      <button class="btn btn-primary col-sm-3 col-md-4" (click)="this.openModal()" >Add Tee Details</button>
     </div>
 </div>
 
 
 </div>
-
+<ng-template modal-host></ng-template>
 
 <!--class="col-sm-6 col-md-4 col-lg-4"-->

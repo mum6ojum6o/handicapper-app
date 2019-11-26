@@ -5,21 +5,36 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Hole Number</th>
-      <th scope="col">Par</th>
+      <th scope="col">Hole </th>
+      <th scope="col" *ngFor="let aRoundDet of roundDetails">{{aRoundDet?.hole?.holeNumber}}</th>
+      <!--<th scope="col">Par</th>
       <th scope="col">Shots Taken</th>
       <th scope="col">Adjusted Shots</th>
       <th scope="col">Status
-      </th>
+      </th> -->
       <!--<th></th>-->
     </tr>
   </thead>
-      <!--<tr>
+    <tr>
+      <th scope="col">Par</th>
+      <td scope="col" *ngFor="let aRoundDet of roundDetails"> {{aRoundDet?.hole?.par}} </td>
+    </tr>
+    <tr>
+      <th scope="col">Shots Taken</th>
+      <td scope="col" *ngFor="let aRoundDet of roundDetails; index as i" [ngClass] = "{'alert-success': aRoundDet?.hole?.par > aRoundDet?.shotsTaken,'alert-danger': aRoundDet?.hole?.par<aRoundDet?.shotsTaken}" role="alert">
+        <span >{{aRoundDet?.shotsTaken}}</span>
+      </td>
+    </tr>
+    <tr >
+      <th scope="col">Adjusted Scores</th>
+      <td *ngFor="let aRoundDet of roundDetails">{{ aRoundDet?.adjustedScore }} </td>
+    </tr>
+    <!--<tr>
           <td *ngIf="this.addRoundDetailFlag">
               <app-add-round-details [roundHeader]="this.roundHeader"></app-add-round-details>
             </td>
       </tr> -->
-      <tr *ngFor="let aHole of roundDetails; index as i">
+      <!--<tr *ngFor="let aHole of roundDetails; index as i">
 
         <td scope="col">
           {{aHole?.hole?.holeNumber}}
@@ -50,7 +65,7 @@
             <button class="btn btn-primary" (click)="updatedRequested(i)">Edit</button>
           </div>
         </td>
-      </tr>
+      </tr>-->
 </table>
 <button type="button" class="btn btn-primary btn-lg"
 *ngIf="this.getRoundDetailsSize() < 18" data-toggle="modal" data-target="#addRoundModal" (click)="this.openModal()">

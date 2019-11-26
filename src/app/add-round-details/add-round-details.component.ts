@@ -45,7 +45,7 @@ ngOnInit(): void {
   /*else {
     this.rearrangeRounds();
    }*/
-   this.rearrangeRounds();
+  this.rearrangeRounds();
   for (let i = 0; i < this.holes.length; i++) {
       this.roundDetails[i] = new RoundDetail();
       this.roundDetails[i].holeId = this.holes[i].id;

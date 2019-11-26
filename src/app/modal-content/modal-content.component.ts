@@ -20,7 +20,7 @@ export class ModalContentComponent  {
     viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(componentFactory);
     (componentRef.instance).data = this.modalType.data;
-    console.log (this.modalType.data);
+    console.log ('Modal Type:' + this.modalType.data);
   }
 
 }

@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RoundsComponent {
   @Input() rounds: any[];
-  @Input() holes: any[];
+  @Input() holes: any;
   roundDetails: any[];
   expanded: boolean;
   constructor() {

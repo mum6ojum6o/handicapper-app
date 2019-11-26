@@ -1,15 +1,27 @@
+<H3>
+  Holes Summary
+</H3>
 <table class="table">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">Hole #</th>
-    <th scope="col">Par</th>
-    <th scope="col">Stroke Index</th>
+  <thead class="thead-dark" >
+  <tr >
+    <!--
+
+    -->
     <!--<th scope="col"></th>-->
+    <th scope="col">Hole</th>
+    <th scope="col" *ngFor="let hole of holes">{{hole?.holeNumber}}</th>
   </tr>
   </thead>
-  <tr *ngFor="let hole of holes">
-      <td scope="col">{{ hole?.holeNumber }}</td>
-      <td scope="col">{{ hole?.par }}</td>
-      <td scope="col">{{ hole?.strokeIndex }}</td>
+  <tr >
+      <!--<td scope="col">{{ hole?.holeNumber }}</td> -->
+      <th scope="col">Par</th>
+      <td scope="col" *ngFor="let hole of holes">{{ hole?.par }}</td>
+
+    </tr>
+    <tr>
+      <th scope="col">Stroke Index</th>
+      <td scope="col" *ngFor="let hole of holes">{{ hole?.strokeIndex }}</td>
     </tr>
 </table>
+
+

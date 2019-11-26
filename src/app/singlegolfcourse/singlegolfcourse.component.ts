@@ -6,6 +6,10 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { AppError } from '../common/apperror';
 import { AddHoleComponent } from '../add-hole/add-hole.component';
 import { environment } from '../../environments/environment';
+import { ModalContentComponent } from '../modal-content/modal-content.component';
+import { AddTeeComponent } from '../add-tee/add-tee.component';
+import { ModalType } from '../modal-content/modal-type/modal-type';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'singlegolfcourse',
   templateUrl: './singlegolfcourse.component.html',
@@ -21,7 +25,8 @@ addHole: boolean;
 addTee: boolean;
   constructor(
     private route: ActivatedRoute,
-    private service: SinglegolfcourseService
+    private service: SinglegolfcourseService,
+    private modalService: NgbModal
   ) {
     this.addHole = false;
    }
@@ -34,7 +39,7 @@ addTee: boolean;
       .pipe(
         switchMap( combined => {
             this.id = +combined[0].getAll('id')[0];
-            console.log('id from URL: ' + this.id);
+            // console.log('id from URL: ' + this.id);
             this.service.setUrl(environment.url + '/golfCourses/' + this.id);
             return this.service.getAll();
         }),
@@ -57,7 +62,7 @@ addTee: boolean;
   public updateResults($result) {
     console.log("In Update Results");
     this.toggleHoleCreationFlag();
-    console.log(this.holes.push($result));
+    // console.log(this.holes.push($result));
   }
 
 
@@ -68,5 +73,11 @@ addTee: boolean;
     this.toggleTeeCreationFlag();
     this.tees.push($result);
   }
-
+  public openModal() {
+    // console.log('GolfCourseId:'+this.golfCourse);
+    const modalRef = this.modalService.open(ModalContentComponent);
+    modalRef.componentInstance.modalType = new ModalType(AddTeeComponent,
+      { golfCourseId : this.golfCourse.id });
+    modalRef.componentInstance.loadModal();
+  }
 }

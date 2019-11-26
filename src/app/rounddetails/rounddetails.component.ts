@@ -70,10 +70,10 @@ export class RounddetailsComponent implements OnInit {
   }
 
   public openModal() {
-    console.log('in OpenModal' + this.roundHeader);
+    // console.log('in OpenModal' + this.roundHeader);
     const modalRef = this.modalService.open(ModalContentComponent);
     modalRef.componentInstance.modalType = new ModalType(AddRoundDetailsComponent,
-      {roundHeader : this.roundHeader, holes: this.holes});
+      { roundHeader : this.roundHeader, holes: this.holes });
     modalRef.componentInstance.loadModal();
   }
 }
