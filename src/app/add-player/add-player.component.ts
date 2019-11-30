@@ -1,9 +1,10 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { PlayerService } from '../services/player.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppError } from '../common/apperror';
 import { map, switchMap, catchError} from 'rxjs/operators';
 import { Observable, combineLatest, throwError, } from 'rxjs';
+import { ModalData } from '../modal-content/modal-data-interface';
 
 @Component({
   selector: 'app-add-player',
@@ -12,12 +13,14 @@ import { Observable, combineLatest, throwError, } from 'rxjs';
 })
 @Injectable()
 export class AddPlayerComponent implements OnInit {
+
   firstName: string;
   lastName: string;
   phoneNumber: string;
   email: string;
   memberOf: number;
   parameter: number;
+
   constructor(
     private service: PlayerService,
     private router: Router,
@@ -55,6 +58,7 @@ export class AddPlayerComponent implements OnInit {
       alert('An unexpected error occured.');
     });
   }
+
   reset() {
     this.firstName = null;
     this.lastName = null;

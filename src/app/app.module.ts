@@ -26,6 +26,7 @@ import { ModalHandicapperComponent } from './modal-handicapper/modal-handicapper
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ModalDirective } from './modal-content/modal-directive/modal-directive';
 import { AddTeeComponent } from './add-tee/add-tee.component';
+import { EditPlayerComponent } from './edit-player/edit-player.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { AddTeeComponent } from './add-tee/add-tee.component';
     ModalHandicapperComponent,
     ModalContentComponent,
     ModalDirective,
-    AddTeeComponent
+    AddTeeComponent,
+    EditPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { AddTeeComponent } from './add-tee/add-tee.component';
   entryComponents: [
     ModalContentComponent,
     AddRoundDetailsComponent,
-    AddTeeComponent
+    AddTeeComponent,
+    EditPlayerComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErroHandler}

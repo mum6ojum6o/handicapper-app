@@ -8,6 +8,11 @@ import { RoundsService } from '../services/rounds.service';
 import { InterComponentService } from '../services/inter-component.service';
 import { CalculatehandicapserviceService } from '../services/calculatehandicapservice.service';
 import { environment } from '../../environments/environment';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalContentComponent } from '../modal-content/modal-content.component';
+import { AddPlayerComponent } from '../add-player/add-player.component';
+import { ModalType } from '../modal-content/modal-type/modal-type';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 @Component({
   selector: 'player',
   templateUrl: './player.component.html',
@@ -24,7 +29,8 @@ export class PlayerComponent implements OnInit {
     private service: PlayerService,
     private roundService: RoundsService,
     private icService: InterComponentService,
-    private handicapCalculator: CalculatehandicapserviceService) { }
+    private handicapCalculator: CalculatehandicapserviceService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     /*
@@ -93,6 +99,21 @@ export class PlayerComponent implements OnInit {
       let response = this.route.paramMap.pipe(map(() => window.history.state));
       response.subscribe(x => console.log("checkForNewlyAddedRounds:"+x));
       //console.log("new object added:"+ response.id);
+    }
+    public openModal() {
+      const modalRef = this.modalService.open(ModalContentComponent);
+      // console.log('playerId:'+this.player.id);
+      modalRef.componentInstance.modalType = new ModalType(EditPlayerComponent,
+        {
+          firstName : this.player.firstName,
+          lastName: this.player.lastName,
+          email: this.player.email,
+          phoneNumber: this.player.phoneNumber,
+          playerId: this.player.id,
+          memberOf: this.golfCourseId,
+          modal: modalRef
+        });
+      modalRef.componentInstance.loadModal();
     }
 
 }

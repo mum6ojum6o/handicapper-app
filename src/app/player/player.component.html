@@ -20,7 +20,7 @@ Player Profile
         <td scope="col">{{this.player?.phoneNumber}}</td>
         <td scope="col">{{this.handicap}}</td>
         <td scope="col">
-          <button class="btn btn-primary mr-1" >Edit</button>
+          <button class="btn btn-primary mr-1" (click)="openModal()">Edit</button>
           <a [routerLink]="['add-rounds']"
           class="btn btn-primary">Add Score</a>
         </td>
@@ -28,4 +28,4 @@ Player Profile
 </table>
 </div>
 <rounds [rounds]="this.rounds" [holes]="this.player?.memberOf[0]?.holes"></rounds>
-
+<ng-template md-host></ng-template>
