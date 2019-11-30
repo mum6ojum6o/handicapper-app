@@ -37,7 +37,8 @@ export class AddHoleComponent implements OnInit {
       alert('An unexpected error occured.');
     });
   }
-  holeAdditionConfirmed(hole: any) {
+
+  public holeAdditionConfirmed(hole: any) {
     this.uploaded.emit(hole);
   }
 }

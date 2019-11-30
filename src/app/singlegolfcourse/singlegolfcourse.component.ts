@@ -80,4 +80,5 @@ addTee: boolean;
       { golfCourseId : this.golfCourse.id });
     modalRef.componentInstance.loadModal();
   }
+
 }

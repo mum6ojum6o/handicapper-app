@@ -15,10 +15,11 @@ export class GolfcourseComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: GolfcourseService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
-    console.log('in gcomponent ngInit');
+    // console.log('in gcomponent ngInit');
     combineLatest([
       this.route.paramMap,
       this.route.queryParamMap
@@ -29,8 +30,9 @@ export class GolfcourseComponent implements OnInit {
       catchError( (error: Response) => {
         return throwError(new AppError(error));
       })
-    ).subscribe( gcs => {
+    ).subscribe( (gcs) => {
       this.golfCourses = gcs;
+      // console.log('golfCourse:' + this.golfCourses);
      } );
   }
 

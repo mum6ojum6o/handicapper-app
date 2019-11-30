@@ -41,11 +41,11 @@ export class PlayerComponent implements OnInit {
     */
       this.player = this.icService.getData();
       if (this.player != null ) {
-        console.log(this.player);
+        // console.log(this.player);
         this.rounds = this.player.rounds;
         this.playerId = this.player.id;
         this.golfCourseId = this.player.memberOf[0].id;
-        console.log('id: ' + this.golfCourseId);
+        // console.log('id: ' + this.golfCourseId);
         this.massageRoundDetails();
         this.handicapCalculator.setRounds(this.rounds);
         this.handicap = this.handicapCalculator.calculateHandicap();
@@ -65,8 +65,8 @@ export class PlayerComponent implements OnInit {
           switchMap( combined => {
               this.golfCourseId = +combined[0].getAll('id')[0];
               this.playerId = +combined[0].getAll('playerId')[0];
-              console.log(combined);
-              console.log('id from URL: ' + this.golfCourseId);
+              // console.log(combined);
+              // console.log('id from URL: ' + this.golfCourseId);
               this.service.setUrl(environment.url + '/golfCourses/' + this.golfCourseId + '/players/' + this.playerId);
               return this.service.getAll();
           }),
@@ -75,7 +75,7 @@ export class PlayerComponent implements OnInit {
           }
         )).subscribe( player => {
           this.player = player;
-          console.log(this.player);
+          // console.log(this.player);
           this.rounds = player.rounds;
           this.massageRoundDetails();
           /*this.rounds.forEach( r => {
@@ -85,7 +85,7 @@ export class PlayerComponent implements OnInit {
           this.roundService.setRounds(this.player.rounds);
           this.handicapCalculator.setRounds(this.rounds);
           this.handicap = this.handicapCalculator.calculateHandicap();
-          console.log("handicap:" + this.handicap);
+          // console.log("handicap:" + this.handicap);
         });
     }
 
@@ -114,6 +114,10 @@ export class PlayerComponent implements OnInit {
           modal: modalRef
         });
       modalRef.componentInstance.loadModal();
+      modalRef.result.then( response => {
+        // console.log('response of Modal Close:'+ response);
+        this.player = response;
+      });
     }
 
 }
