@@ -1,6 +1,7 @@
 # HandicapperApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+It is a frontend application that consumes the APIs exposed by <a href="https://github.com/mum6ojum6o/Handicapper">handicapper system</a> 
 
 ## Development server
 
