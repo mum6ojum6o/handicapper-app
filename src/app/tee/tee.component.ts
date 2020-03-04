@@ -38,7 +38,7 @@ export class TeeComponent  {
       alert('An unexpected error occured.');
     });
   }
-  public teeAddedConfirmed(tee: any){
+  public teeAddedConfirmed(tee: any) {
       this.teeAdded.emit(tee);
   }
 

@@ -22,6 +22,7 @@ private url = '/addAllRounds';
 golfCourseId: number;
 roundDetails: RoundDetail[];
 playerId: any;
+modalRef: any;
 ngOnInit(): void {
   this.url = environment.url + '/addAllRounds';
   combineLatest([
@@ -87,9 +88,13 @@ ngOnInit(): void {
       this.roundHeader.handicapDifferential = response.handicapDifferential;
       console.log('response:' + response);
       // console.log("round details added to server:" + this.roundHeader.roundDetails);
+      if (this.modalRef != null) {
+        this.modalRef.close(response);
+      }/*else {
       this.router.navigate(['/golfCourse/' + this.golfCourseId + '/players/', this.playerId.toString()]);
+      }*/
     });
-   }
+  }
    public logChange(i) {
      console.log('shotsTaken' + this.roundDetails[i].shotsTaken);
    }
@@ -115,7 +120,9 @@ ngOnInit(): void {
     if (this.roundHeader == null && this.data != null) {
       this.roundHeader = this.data.roundHeader;
       this.holes = this.data.holes;
+      this.modalRef = this.data.modal;
     }
+
     if (this.holes == null ) {
       // fetch from server.
       this.holesService.setUrl(environment.url +

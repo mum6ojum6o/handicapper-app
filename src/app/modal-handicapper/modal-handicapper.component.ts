@@ -11,5 +11,4 @@ export class ModalHandicapperComponent {
   constructor(private modalService: NgbModal) { }
 
 
-
 }

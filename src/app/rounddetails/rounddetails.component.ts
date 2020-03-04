@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RoundDetailsService } from '../services/round-details.service';
 import { environment } from '../../environments/environment';
@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
 import { AddRoundDetailsComponent } from '../add-round-details/add-round-details.component';
 import { ModalType } from '../modal-content/modal-type/modal-type';
+
 @Component({
   selector: 'rounddetails',
   templateUrl: './rounddetails.component.html',
@@ -15,6 +16,7 @@ export class RounddetailsComponent implements OnInit {
   @Input() roundDetails: any[];
   @Input() roundHeader: any;
   @Input() holes: any[];
+  @Output() roundsUpdated = new EventEmitter();
   updateRequest: boolean;
   updateRowIndex: number;
   addRoundDetailFlag: boolean;
@@ -73,7 +75,16 @@ export class RounddetailsComponent implements OnInit {
     // console.log('in OpenModal' + this.roundHeader);
     const modalRef = this.modalService.open(ModalContentComponent);
     modalRef.componentInstance.modalType = new ModalType(AddRoundDetailsComponent,
-      { roundHeader : this.roundHeader, holes: this.holes });
+      { roundHeader : this.roundHeader, holes: this.holes, modal: modalRef });
     modalRef.componentInstance.loadModal();
+    modalRef.result.then( response => {
+      console.log(response);
+      // this.roundHeader = response.roundHeader;
+      this.roundDetails = response.roundDetails;
+      this.roundHeader.hcpIndex = response.hcpIndex;
+      this.roundHeader.handicapDifferential = response.handicapDifferential;
+      this.roundHeader.adjustedScore = response.adjustedScore;
+      this.roundsUpdated.emit(response);
+    } );
   }
 }

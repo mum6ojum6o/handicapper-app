@@ -21,13 +21,15 @@
         <td scope="col">{{ this.round?.adjustedScore }}</td>
         <td scope="col">{{ this.round?.handicapDifferential }}</td>
         <td scope="col">{{ this.round?.tee?.teeName }}</td>
+        <td scope="col">Click to View Details</td>
       </tr>
     </tbody>
   </table>
 
   <div>
       <rounddetails class="col-sm-12 col-md-3 col-lg-3" *ngIf=this.expanded
-      [roundDetails]="this.roundDetails" [roundHeader]="this.rounds[0]" [holes]="this.holes">
+      [roundDetails]="this.roundDetails" [roundHeader]="this.rounds[0]" [holes]="this.holes"
+      (roundsUpdated)="this.updateRounds($event)">
       </rounddetails>
   </div>
 
